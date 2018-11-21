@@ -1,0 +1,36 @@
+{
+  "name": "bindog",
+  "version": "1.0.0",
+  "description": "A minimal MYSQL binlog watch",
+  "main": "main.js",
+  "build": {
+    "appId": "com.zhangqibuptse.app",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    }
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "repository": "https://github.com/electron/bindog",
+  "keywords": [
+    "Mysql",
+    "binlog",
+    "electron"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^3.0.4",
+    "electron-builder": "^20.36.2"
+  },
+  "dependencies": {
+    "@rodrigogs/zongji": "rodrigogs/zongji",
+    "list.js": "^1.5.0",
+    "moment": "^2.22.2"
+  }
+}
