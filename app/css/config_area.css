@@ -1,0 +1,61 @@
+div.wrap-config-header {
+  /*float: left;*/
+}
+
+div.logo-area {
+  display: inline-block;
+}
+
+div.logo-area img.logo {
+  width: 100px;
+}
+
+div.config-area {
+  padding: 5px;
+  display: inline-block;
+}
+
+div.config-area label {
+  text-align: left;
+  /*width: 100px;*/
+}
+
+div.config-area .btn {
+  font-size: 12px;
+  padding-top: 5px;
+}
+
+div.config-area .form-control, .btn {
+  font-size: 12px;
+}
+
+div.config-area input, .input-group-addon {
+  height: 25px;
+}
+
+div.config-area button {
+  height: 25px;
+}
+
+#port {
+  width: 60px;
+}
+
+#lds-facebook {
+  display: none;
+  margin-left: 30px;
+}
+
+.lds-midorikappa {
+  padding-top: 5px;
+  height: 40px;
+}
+
+label.btn.btn-secondary {
+  color: #b7b7b7;
+  cursor: pointer;
+}
+
+label.btn.btn-secondary.active {
+  color: #ffffff;
+}

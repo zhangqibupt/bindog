@@ -28,7 +28,7 @@ var ZONG_JI = null;
   });
 
   $(".table-list tbody.list").on('click', 'tr', function (e) {
-    $(e.target).closest("tr").find('div.detail').slideToggle();
+    $(e.target).closest("tr").find('div.detail').toggle();
   });
 })(jQuery);
 
@@ -126,7 +126,7 @@ function handleClear() {
 }
 
 function handleToggleAll() {
-  $('div.detail').slideToggle($('div.detail').is(':visible'));
+  $('div.detail').is(':visible') ? $('div.detail').hide() : $('div.detail').show()
 }
 
 function getDefaultItem(evt) {

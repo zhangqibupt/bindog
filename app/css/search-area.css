@@ -1,0 +1,22 @@
+form.search-form {
+  padding-bottom: 10px;
+}
+
+form.search-form label, button {
+  height: 27px;
+}
+
+form.search-form button {
+  margin-left: 5px;
+  padding-top: 6px;
+}
+
+div.search-area {
+  padding-left: 5px;
+}
+
+div.search-area input.form-control {
+  width: 300px;
+  height: 25px;
+  font-size: 13px;
+}

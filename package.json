@@ -1,7 +1,7 @@
 {
   "name": "bindog",
   "version": "1.0.0",
-  "description": "A minimal MYSQL binlog watch",
+  "description": "A minimal MYSQL binlog watcher",
   "main": "main.js",
   "build": {
     "appId": "com.zhangqibuptse.app",
@@ -16,11 +16,12 @@
     "start": "electron .",
     "dist": "electron-builder"
   },
-  "repository": "https://github.com/electron/bindog",
+  "repository": "https://github.com/zhangqibuptse/bindog",
   "keywords": [
     "Mysql",
     "binlog",
-    "electron"
+    "electron",
+    "monitor"
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
