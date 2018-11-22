@@ -1,11 +1,14 @@
 {
-  "name": "bindog",
-  "version": "1.0.0",
+  "name": "Bindog",
+  "version": "1.0.1",
   "description": "A minimal MYSQL binlog watcher",
   "main": "main.js",
   "build": {
     "appId": "com.zhangqibuptse.app",
     "mac": {
+      "icon": "app/images/logo.icns",
+      "type": "distribution",
+      "publish": ["github"],
       "target": [
         "dmg",
         "zip"
@@ -14,7 +17,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "release": "build"
   },
   "repository": "https://github.com/zhangqibuptse/bindog",
   "keywords": [
@@ -31,6 +35,7 @@
   },
   "dependencies": {
     "@rodrigogs/zongji": "rodrigogs/zongji",
+    "electron-updater": "^4.0.4",
     "list.js": "^1.5.0",
     "moment": "^2.22.2"
   }
