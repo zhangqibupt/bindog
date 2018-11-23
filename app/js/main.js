@@ -1,7 +1,7 @@
 const ZongJi = require('@rodrigogs/zongji');
 const COLUMNS = ['Column Name', 'Value'];
-var TABLE = null;
-var ZONG_JI = null;
+let TABLE = null;
+let ZONG_JI = null;
 
 (function ($) {
   "use strict";

@@ -1,19 +1,14 @@
 {
   "name": "Bindog",
   "version": "1.0.3",
-  "description": "A minimal MYSQL binlog watcher",
+  "description": "A MYSQL binlog watcher",
   "main": "main.js",
   "build": {
     "appId": "com.zhangqibupt.app",
     "mac": {
       "icon": "app/images/logo.icns",
-      "type": "distribution",
       "publish": [
-        {
-          "provider": "github",
-          "owner": "zhangqibupt",
-          "repo": "bindog"
-        }
+        "github"
       ],
       "target": [
         "dmg"
@@ -33,14 +28,13 @@
     "monitor"
   ],
   "author": "GitHub",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^3.0.4",
     "electron-builder": "^20.36.2"
   },
   "dependencies": {
     "@rodrigogs/zongji": "rodrigogs/zongji",
-    "electron-updater": "^4.0.4",
     "list.js": "^1.5.0",
     "moment": "^2.22.2"
   }

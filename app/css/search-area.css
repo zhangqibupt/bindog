@@ -20,3 +20,7 @@ div.search-area input.form-control {
   height: 25px;
   font-size: 13px;
 }
+
+form.search-form .btn-secondary.focus{
+  box-shadow: none;
+}

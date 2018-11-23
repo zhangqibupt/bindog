@@ -222,3 +222,8 @@ body {
   width: 100%;
   margin: 0 auto;
 }
+
+input {
+  border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+}

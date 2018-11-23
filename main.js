@@ -1,11 +1,9 @@
 const { app, BrowserWindow } = require('electron');
-const { autoUpdater } = require("electron-updater");
-autoUpdater.checkForUpdatesAndNotify();
 
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 1200, height: 800 });
+  mainWindow = new BrowserWindow({ width: 1200, height: 800, icon: __dirname + '/app/images/logo.icns' });
   mainWindow.loadFile('app/index.html');
   mainWindow.on('closed', function () {
     mainWindow = null
