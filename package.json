@@ -36,6 +36,7 @@
   "dependencies": {
     "@rodrigogs/zongji": "rodrigogs/zongji",
     "list.js": "^1.5.0",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "mousetrap": "^1.6.2"
   }
 }
