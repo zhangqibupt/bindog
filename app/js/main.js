@@ -1,4 +1,5 @@
 const ZongJi = require('@rodrigogs/zongji');
+const { shell } = require('electron')
 const COLUMNS = ['Column Name', 'Value'];
 let TABLE = null;
 let ZONG_JI = null;
@@ -107,10 +108,11 @@ function handleInsert(evt) {
 
 function handleUpdate(evt) {
   const item = getDefaultItem(evt);
+  const equal = (a, b) => ((a + '') === (b + ''));
   item.operation_type = 'UPDATE';
   item.detail = evt.rows.map(row => {
     const tableRows = Object.keys(row.before).map(key => {
-      const valueChanged = row.before[key] !== row.after[key];
+      const valueChanged = !equal(row.before[key], row.after[key]);
       const formattedKey = valueChanged ? `<p class='changed-key'>${key}</p>` : key;
       const formattedValue = valueChanged ? `<p><span class="changed-value">${row.before[key]}</span>  =>  <span>${row.after[key]}</span></p>` : row.before[key];
       return [formattedKey, formattedValue];
@@ -159,4 +161,9 @@ function createTable({ columns, rows }) {
       <tbody>${createBody(rows)}</tbody>
     </table>
   `;
+}
+
+
+function reportIssue() {
+  shell.openExternal('https://github.com/zhangqibupt/bindog/issues/new')
 }

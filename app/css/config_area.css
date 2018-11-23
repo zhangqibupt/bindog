@@ -20,6 +20,10 @@ div.config-area label {
   /*width: 100px;*/
 }
 
+div.wrap-config-header #report_issue {
+  float: right;
+}
+
 div.config-area .btn {
   font-size: 12px;
   padding-top: 5px;
@@ -47,7 +51,8 @@ div.config-area button {
 
 #lds-facebook {
   display: none;
-  margin-left: 30px;
+  margin-left: 5px;
+  padding-top: 3px;
 }
 
 .lds-midorikappa {
@@ -65,11 +70,9 @@ label.btn.btn-secondary.active {
 }
 
 .loader {
-    border: 12px solid #f3f3f3; /* Light grey */
-    border-top: 12px solid #3498db; /* Blue */
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
     animation: spin 2s linear infinite;
 }
 
