@@ -1,45 +1,23 @@
 # bindog
+A MySQL binlog listener running on [Electron](https://github.com/electron/electron)
 
-**Clone and run for a quick way to see Electron in action.**
-
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
-
-**Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
-
-A basic Electron application needs just these files:
-
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
-
-You can learn more about each of these components within the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start).
+[![b03IsTARFL.md.gif](https://www.z4a.net/images/2018/11/26/b03IsTARFL.md.gif)](https://www.z4a.net/image/78lV7b)
 
 ## To Use
+Download from https://github.com/zhangqibupt/bindog/releases
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+## NOTE
+This is based on [Zongji](https://github.com/nevill/zongji), if you cannot see binlog output or encounter `Error: ER_NO_BINARY_LOGGING: You are not using binary logging`, please make sure
+* Enable MySQL binlog in `my.cnf`, restart MySQL server.
+  ```
+  [mysqld]
+  server-id        = 1
+  binlog_format    = row
+  # Directory must exist. This path works for Linux. Other OS may require
+  log_bin          = /var/log/mysql/mysql-bin.log
+  ```
 
-```bash
-# Clone this repository
-git clone https://github.com/electron/bindog
-# Go into the repository
-cd bindog
-# Install dependencies
-npm install
-# Run the app
-npm start
-```
-
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
-
-## Resources for Learning Electron
-
-- [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
-- [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/bindog](https://github.com/electron/bindog) - a very basic starter Electron app
-- [electron/simple-samples](https://github.com/electron/simple-samples) - small applications with ideas for taking them further
-- [electron/electron-api-demos](https://github.com/electron/electron-api-demos) - an Electron app that teaches you how to use Electron
-- [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
+  For docker image, it's usually located in `/etc/mysql/my.cnf`.
 
 ## License
-
-[CC0 1.0 (Public Domain)](LICENSE.md)
+MIT
