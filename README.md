@@ -1,5 +1,6 @@
 # bindog
 A MySQL binlog listener running on [Electron](https://github.com/electron/electron)
+
 [Demo](http://recordit.co/b03IsTARFL)
 
 ## To Use
