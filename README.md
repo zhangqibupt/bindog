@@ -1,7 +1,7 @@
 # bindog
 A MySQL binlog listener running on [Electron](https://github.com/electron/electron)
 
-[![b03IsTARFL.gif](https://www.z4a.net/images/2018/11/26/b03IsTARFL.gif)](https://www.z4a.net/image/78lV7b)
+[Demo](https://www.z4a.net/image/78lV7b)
 
 ## To Use
 Download from https://github.com/zhangqibupt/bindog/releases
