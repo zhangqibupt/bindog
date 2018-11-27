@@ -1,7 +1,7 @@
 # bindog
 A MySQL binlog listener running on [Electron](https://github.com/electron/electron)
 
-[Demo](https://www.z4a.net/image/78lV7b)
+[Demo](http://g.recordit.co/Hqhqx1Y625.gif)
 
 ## To Use
 Download from https://github.com/zhangqibupt/bindog/releases

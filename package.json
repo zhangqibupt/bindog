@@ -1,6 +1,6 @@
 {
   "name": "Bindog",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A MYSQL binlog watcher",
   "main": "main.js",
   "build": {
@@ -18,7 +18,7 @@
   "scripts": {
     "start": "electron .",
     "dist": "electron-builder",
-    "release": "build"
+    "release": "build --mac --linux"
   },
   "repository": "https://github.com/zhangqibupt/bindog",
   "keywords": [
