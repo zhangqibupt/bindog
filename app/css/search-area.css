@@ -27,3 +27,12 @@ div.search-area input.form-control {
 form.search-form .btn-secondary.focus{
   box-shadow: none;
 }
+
+form.search-form .show_full_summary {
+  color: white;
+  font-size: 13px;
+}
+
+form.search-form input.show_full_summary{
+  margin-left: 10px;
+}

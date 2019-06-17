@@ -1,5 +1,5 @@
 const ZongJi = require('@rodrigogs/zongji');
-const { shell } = require('electron')
+const { shell } = require('electron');
 const COLUMNS = ['Column Name', 'Value'];
 let TABLE = null;
 let ZONG_JI = null;
@@ -50,7 +50,7 @@ function startListen() {
     host: $("#host").val() || '127.0.0.1',
     port: $("#port").val() || 3306,
     user: $("#username").val() || 'root',
-    password: $("#password").val() || 'root'
+    password: $("#password").val()
   });
 
   ZONG_JI.on('binlog', function (evt) {
@@ -79,15 +79,19 @@ const TYPE = {
 };
 
 function handleEvt(evt) {
+  debugger;
   switch (evt.getTypeName()) {
     case TYPE.DELETE_ROWS:
       handleDelete(evt);
+      refreshSummary();
       break;
     case TYPE.WRITE_ROWS:
       handleInsert(evt);
+      refreshSummary();
       break;
     case TYPE.UPDATE_ROWS:
       handleUpdate(evt);
+      refreshSummary();
       break;
   }
 }
@@ -113,14 +117,19 @@ function handleUpdate(evt) {
   item.detail = evt.rows.map(row => {
     const tableRows = Object.keys(row.before).map(key => {
       const valueChanged = !equal(row.before[key], row.after[key]);
-      const formattedKey = valueChanged ? `<p class='changed-key'>${key}</p>` : key;
-      const formattedValue = valueChanged ? `<p><span class="changed-value">${row.before[key]}</span>  =>  <span>${row.after[key]}</span></p>` : row.before[key];
+      const formattedKey = valueChanged ? `<p class='changed-key'>${key}</p>` : `<p class='unchanged-key'>${key}</p>`;
+      const formattedValue = valueChanged ? `<p><span class="changed-value">${row.before[key]}</span>  =>  <span>${row.after[key]}</span></p>` : `<p class='unchanged-value'>${row.after[key]}</p>`;
       return [formattedKey, formattedValue];
     });
     return createTable({ columns: COLUMNS, rows: tableRows })
 
   }).join('');
   TABLE.add(item);
+}
+
+function refreshSummary() {
+  const showAll = $("#show_full_summary").is(":checked");
+  showAll ? $(".unchanged-value").parentsUntil('tbody').show() : $(".unchanged-value").parentsUntil('tbody').hide()
 }
 
 function handleClear() {
@@ -138,7 +147,7 @@ function getDefaultItem(evt) {
     timestamp: moment(evt.timestamp).format('YYYY-MM-DD HH:mm:ss'),
     db_name: tableInfo.parentSchema,
     table_name: tableInfo.tableName,
-    summary: `<p class="detail-summary">Affected Rows: ${evt.rows.length}</p>`,
+    summary: `<p class="detail-summary">${evt.rows.length} Change(s)</p>`,
   }
 }
 

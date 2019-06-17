@@ -1,6 +1,6 @@
 {
   "name": "Bindog",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A MYSQL binlog watcher",
   "main": "main.js",
   "build": {
@@ -34,6 +34,7 @@
     "electron-builder": "^20.36.2"
   },
   "dependencies": {
+    "electron-reload": "^1.4.0",
     "@rodrigogs/zongji": "rodrigogs/zongji",
     "list.js": "^1.5.0",
     "moment": "^2.22.2",

@@ -1,109 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Bindog</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-        <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    </head>
-    <body>
-        <div class="limiter">
-            <div class="container-table100">
-                <div class="wrap-table100">
-                    <div class="wrap-config-header">
-                        <div class='config-area'>
-                            <form class="form-inline">
-                                <label class="sr-only" for="host">Host</label>
-                                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="host" placeholder="host" value='127.0.0.1'>
-                                <label class="sr-only" for="port">Username</label>
-                                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <div class="input-group-addon">:</div>
-                                    <input type="text" class="form-control" id="port" placeholder="port" value='3306'>
-                                </div>
-                                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="username" placeholder="username" value='root'>
-                                <input type="password" class="form-control mb-2 mr-sm-2 mb-sm-0" id="password" placeholder="password(root)">
-                                <button type="button" id='start' class="btn btn-primary" onclick="clickStart()">Start Listen</button>
-                                <div id='lds-facebook' class="lds-facebook">
-                                    <div class="loader"></div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class='logo-area'>
-
-                        </div>
-                        <div>
-                            <label class="btn  btn-danger hov-pointer" id="report_issue" onclick="reportIssue()">
-                                Report Issue
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="table100" id="tableID">
-                        <form class="form-inline search-form">
-                            <div class='search-area'>
-                                <div id='search-input'><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Search..."></div>
-                            </div>
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary active">
-                                    <input type="radio" name="search_type" id="option1" autocomplete="off" checked value=''>ALL
-                                </label>
-                                <label class="btn btn-secondary">
-                                    <input type="radio" name="search_type" id="option2" autocomplete="off" value='operation_type'>Type
-                                </label>
-                                <label class="btn btn-secondary">
-                                    <input type="radio" name="search_type" id="option3" autocomplete="off" value='db_name'> DB
-                                </label>
-                                <label class="btn btn-secondary">
-                                    <input type="radio" name="search_type" id="option4" autocomplete="off" value='table_name'> Table
-                                </label>
-                                <label class="btn btn-secondary">
-                                    <input type="radio" name="search_type" id="option5" autocomplete="off" value='detail'> Summary
-                                </label>
-                            </div>
-                            <button id='clear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
-                            <!--<button id='toggle' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>-->
-                        </form>
-                        <table class="table-list">
-                            <thead>
-                                <tr class="table100-head">
-                                    <th class="column1">
-                                        <button type="button" data-sort="timestamp">Timestamp</button>
-                                    </th>
-                                    <th class="column2">
-                                        <button type="button" data-sort="operation_type">Type</button>
-                                    </th>
-                                    <th class="column3">
-                                        <button type="button" data-sort="db_name">DB</i></button>
-                                    </th>
-                                    <th class="column4">
-                                        <button type="button" data-sort="table_name">Table<i class="caret"></i></button>
-                                    </th>
-                                    <th class="column5">
-                                        <button type="button" data-sort="summary">Summary<i class="caret"></i></button>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="list">
-                            </tbody>
-                        </table>
-                    </div>
+  <head>
+    <title>Bindog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  </head>
+  <body>
+    <div class="limiter">
+      <div class="container-table100">
+        <div class="wrap-table100">
+          <div class="wrap-config-header">
+            <div class='config-area'>
+              <form class="form-inline">
+                <label class="sr-only" for="host">Host</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="host" placeholder="host" value='127.0.0.1'>
+                <label class="sr-only" for="port">Username</label>
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                  <div class="input-group-addon">:</div>
+                  <input type="text" class="form-control" id="port" placeholder="port" value='3306'>
                 </div>
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="username" placeholder="username" value='root'>
+                <input type="password" class="form-control mb-2 mr-sm-2 mb-sm-0" id="password" placeholder="password">
+                <button type="button" id='start' class="btn btn-primary" onclick="clickStart()">Start Listen</button>
+                <div id='lds-facebook' class="lds-facebook">
+                  <div class="loader"></div>
+                </div>
+              </form>
             </div>
+            <div class='logo-area'>
+
+            </div>
+            <div>
+              <label class="btn  btn-danger hov-pointer" id="report_issue" onclick="reportIssue()">
+                Report Issue
+              </label>
+            </div>
+          </div>
+
+          <div class="table100" id="tableID">
+            <form class="form-inline search-form">
+              <div class='search-area'>
+                <div id='search-input'><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Search..."></div>
+              </div>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                  <input type="radio" name="search_type" id="option1" autocomplete="off" checked value=''>ALL
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="search_type" id="option2" autocomplete="off" value='operation_type'>Type
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="search_type" id="option3" autocomplete="off" value='db_name'> DB
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="search_type" id="option4" autocomplete="off" value='table_name'> Table
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="search_type" id="option5" autocomplete="off" value='detail'> Summary
+                </label>
+              </div>
+              <button id='clear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
+              <button id='' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>
+              <input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">
+              <label class="form-check-label show_full_summary" for="show_full_summary">Show full summary</label>
+              <!--<button id='toggle' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>-->
+            </form>
+            <table class="table-list">
+              <thead>
+                <tr class="table100-head">
+                  <th class="column1">
+                    <button type="button" data-sort="timestamp">Timestamp</button>
+                  </th>
+                  <th class="column2">
+                    <button type="button" data-sort="operation_type">Type</button>
+                  </th>
+                  <th class="column3">
+                    <button type="button" data-sort="db_name">DB</i></button>
+                  </th>
+                  <th class="column4">
+                    <button type="button" data-sort="table_name">Table<i class="caret"></i></button>
+                  </th>
+                  <th class="column5">
+                    <button type="button" data-sort="summary">Summary<i class="caret"></i></button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="list">
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-        <script src="vendor/bootstrap/js/popper.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-        <script src="vendor/select2/select2.min.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/shortcut.js"></script>
-
-    </body>
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="js/shortcut.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
