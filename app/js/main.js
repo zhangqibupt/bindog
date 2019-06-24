@@ -53,7 +53,7 @@ function getDBInfo() {
     host: $("#host").val() || '127.0.0.1',
     port: $("#port").val() || 3306,
     user: $("#username").val() || 'root',
-    password: $("#password").val() || 'root'
+    password: $("#password").val()
   }
 }
 
