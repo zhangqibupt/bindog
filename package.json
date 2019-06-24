@@ -38,6 +38,7 @@
     "electron-reload": "^1.4.0",
     "list.js": "^1.5.0",
     "moment": "^2.22.2",
-    "mousetrap": "^1.6.2"
+    "mousetrap": "^1.6.2",
+    "sql-highlight": "^2.1.2"
   }
 }

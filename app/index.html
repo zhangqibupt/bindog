@@ -50,30 +50,18 @@
               <div class='search-area'>
                 <div id='search-input'><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Search..."></div>
               </div>
-              <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active">
-                  <input type="radio" name="search_type" id="option1" autocomplete="off" checked value=''>ALL
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="search_type" id="option2" autocomplete="off" value='operation_type'>Type
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="search_type" id="option3" autocomplete="off" value='db_name'> DB
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="search_type" id="option4" autocomplete="off" value='table_name'> Table
-                </label>
-                <label class="btn btn-secondary">
-                  <input type="radio" name="search_type" id="option5" autocomplete="off" value='detail'> Summary
-                </label>
-              </div>
               <button id='clear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
               <button type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>
-              <input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">
-              <label class="form-check-label show_full_summary" for="show_full_summary">Show full summary</label>
+              <!--<input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">-->
+              <!--<label class="form-check-label show_full_summary" for="show_full_summary">Show full summary</label>-->
+              <input type="checkbox" class="form-check-input show_full_summary" id="show_change_history" style='margin-left: 10px' onchange="showChangeHistory()" checked>
+              <label class="form-check-label show_full_summary" for="show_change_history">Change History</label>
+
+              <input type="checkbox" class="form-check-input show_full_summary" id="show_query_log" style='margin-left: 10px' onchange="showQueryLog()">
+              <label class="form-check-label show_full_summary" for="show_query_log">Query Log</label>
               <!--<button id='toggle' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>-->
             </form>
-            <table class="table-list">
+            <table class="table-list" id='change_history_table'>
               <thead>
                 <tr class="table100-head">
                   <th class="column1">
@@ -97,13 +85,7 @@
               </tbody>
             </table>
           </div>
-          <div class="table100" id="queryTableID">
-            <form class="form-inline search-form">
-              <div class='search-area'>
-                <div id='query-search-input'><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Search..."></div>
-              </div>
-              <button id='queryClear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
-            </form>
+          <div class="table100" id="queryTableID" style=" display: none; padding-top: 20px;">
             <table class="table-list" id='queryTable'>
               <thead>
                 <tr class="table100-head">

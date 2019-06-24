@@ -6,4 +6,7 @@ Mousetrap.bind('command+f', function () {
 Mousetrap.bind('command+r', function () {
   $('#clear').click()
 });
+Mousetrap.bind('command+d', function () {
+  clickStart()
+});
 

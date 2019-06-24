@@ -5,6 +5,9 @@ const { shell } = require('electron');
 const COLUMNS = ['Column Name', 'Value'];
 let TABLE = null;
 let ZONG_JI = null;
+const moment = require('moment');
+const Highlight = require('sql-highlight');
+const highlighter = new Highlight({ html: true });
 
 (function ($) {
   "use strict";
@@ -20,8 +23,10 @@ let ZONG_JI = null;
 
   $('#search-input').on('input', function () {
     const searchString = $('#search-input input').val();
-    const searchType = $("label.btn.btn-secondary.active input").val();
-    TABLE.search(searchString, searchType && [searchType]);
+    // const searchType = $("label.btn.btn-secondary.active input").val();
+    // TABLE.search(searchString, searchType && [searchType]);
+    TABLE.search(searchString);
+    QUERY_TABLE.search(searchString);
   });
 
   $("label.btn.btn-secondary").on('mouseup', function () {
@@ -147,6 +152,17 @@ function refreshSummary() {
   const showAll = $("#show_full_summary").is(":checked");
   showAll ? $(".unchanged-value").parentsUntil('tbody').show() : $(".unchanged-value").parentsUntil('tbody').hide()
 }
+
+function showQueryLog() {
+  const showQueryLog = $("#show_query_log").is(":checked");
+  showQueryLog ? $('#queryTableID').show() : $('#queryTableID').hide()
+}
+
+function showChangeHistory() {
+  const showQueryLog = $("#show_change_history").is(":checked");
+  showQueryLog ? $('#change_history_table').show() : $('#change_history_table').hide()
+}
+
 
 function handleClear() {
   TABLE.clear();

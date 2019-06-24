@@ -1,8 +1,8 @@
 const { app, BrowserWindow, Menu } = require('electron');
 
-// if (process.env.NODE_ENV === 'development') {
-require('electron-reload')(__dirname);
-// }
+if (process.env.NODE_ENV === 'development') {
+  require('electron-reload')(__dirname);
+}
 
 let mainWindow = null;
 
@@ -32,7 +32,8 @@ function createWindow() {
       { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
       { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" },
       { label: "Search", accelerator: "CmdOrCtrl+F" },
-      { label: "Clear All Records", accelerator: "CmdOrCtrl+R" }
+      { label: "Clear All Records", accelerator: "CmdOrCtrl+R" },
+      { label: "Start Listen", accelerator: "CmdOrCtrl+D" }
     ]
   }
   ];

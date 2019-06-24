@@ -20,22 +20,8 @@ const FETCH_LOG_QUERY = "SELECT * FROM mysql.slow_log where db !='' and db !='my
     const searchString = $('#query-search-input input').val();
     QUERY_TABLE.search(searchString);
   });
-
-  QUERY_TABLE.add({
-    start_time: 'xxxxxx',
-    query_time: 'xxxxxx',
-    db: 'xxxxxx',
-    sql_text: 'xxxxxx'
-  })
-
 })(jQuery);
 
-
-function clearTable() {
-  if (QUERY_TABLE) {
-    QUERY_TABLE.clear();
-  }
-}
 
 function startQueryLog() {
   CON.query(SETUP_DB_SQL, function (error) {
@@ -53,18 +39,16 @@ function fetchLogs() {
       handleError(error);
     } else {
       const result = results[0];
-      const moment = require('moment');
 
       QUERY_TABLE.add(result.map(({ start_time, query_time, db, sql_text }) => ({
         start_time: moment(start_time).format('HH:mm:ss'),
         query_time: `${moment.duration(query_time).asSeconds()}s`,
         db,
-        sql_text
+        sql_text: highlighter.highlight(sql_text)
       })));
 
-      setTimeout(fetchLogs, 5000)
+      setTimeout(fetchLogs, 2000)
     }
-    console.dir(results);
   });
 }
 
