@@ -1,3 +1,5 @@
+const mysql = require('mysql');
+let CON = null;
 const ZongJi = require('@rodrigogs/zongji');
 const { shell } = require('electron');
 const COLUMNS = ['Column Name', 'Value'];
@@ -41,17 +43,23 @@ function clickStart() {
   }, 1000)
 }
 
+function getDBInfo() {
+  return {
+    host: $("#host").val() || '127.0.0.1',
+    port: $("#port").val() || 3306,
+    user: $("#username").val() || 'root',
+    password: $("#password").val() || 'root'
+  }
+}
+
 function startListen() {
   $('#lds-facebook').hide();
   if (ZONG_JI !== null) {
     ZONG_JI.stop();
   }
-  ZONG_JI = new ZongJi({
-    host: $("#host").val() || '127.0.0.1',
-    port: $("#port").val() || 3306,
-    user: $("#username").val() || 'root',
-    password: $("#password").val()
-  });
+
+  ZONG_JI = new ZongJi(getDBInfo());
+  mysql.createConnection(getDBInfo());
 
   ZONG_JI.on('binlog', function (evt) {
     handleEvt(evt)
@@ -66,9 +74,18 @@ function startListen() {
 
   ZONG_JI.start({
     startAtEnd: true,
-    includeEvents: ['tablemap', 'writerows', 'updaterows', 'deleterows'],
-    excludeEvents: ['rotate']
+    includeEvents: ['tablemap', 'writerows', 'updaterows', 'deleterows', 'rotate'],
+    // excludeEvents: ['rotate'],
+    includeSchema: { 'mysql': true, 'fwmrm_oltp': true }
   });
+
+  CON = mysql.createConnection({
+    ...getDBInfo(),
+    multipleStatements: true
+  });
+
+  startQueryLog();
+
   $('#lds-facebook').show();
 }
 
@@ -79,7 +96,6 @@ const TYPE = {
 };
 
 function handleEvt(evt) {
-  debugger;
   switch (evt.getTypeName()) {
     case TYPE.DELETE_ROWS:
       handleDelete(evt);
@@ -134,6 +150,7 @@ function refreshSummary() {
 
 function handleClear() {
   TABLE.clear();
+  QUERY_TABLE.clear();
 }
 
 function handleToggleAll() {

@@ -24,7 +24,7 @@
                 <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="host" placeholder="host" value='127.0.0.1'>
                 <label class="sr-only" for="port">Username</label>
                 <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                  <div class="input-group-addon">:</div>
+                  <div class="input-group-addon"> : </div>
                   <input type="text" class="form-control" id="port" placeholder="port" value='3306'>
                 </div>
                 <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="username" placeholder="username" value='root'>
@@ -68,7 +68,7 @@
                 </label>
               </div>
               <button id='clear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
-              <button id='' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>
+              <button type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>
               <input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">
               <label class="form-check-label show_full_summary" for="show_full_summary">Show full summary</label>
               <!--<button id='toggle' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>-->
@@ -97,6 +97,34 @@
               </tbody>
             </table>
           </div>
+          <div class="table100" id="queryTableID">
+            <form class="form-inline search-form">
+              <div class='search-area'>
+                <div id='query-search-input'><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Search..."></div>
+              </div>
+              <button id='queryClear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
+            </form>
+            <table class="table-list" id='queryTable'>
+              <thead>
+                <tr class="table100-head">
+                  <th class="column1">
+                    <button type="button" data-sort="start_time">Timestamp</button>
+                  </th>
+                  <th class="column2">
+                    <button type="button" data-sort="query_time">Duration</button>
+                  </th>
+                  <th class="column3">
+                    <button type="button" data-sort="db">DB</button>
+                  </th>
+                  <th class="column4">
+                    <button type="button" data-sort="sql_text">SQL</button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="list">
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -107,5 +135,6 @@
     <script src="vendor/select2/select2.min.js"></script>
     <script src="js/shortcut.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/query_log_table.js"></script>
   </body>
 </html>

@@ -1,15 +1,20 @@
 const { app, BrowserWindow, Menu } = require('electron');
 
+// if (process.env.NODE_ENV === 'development') {
+require('electron-reload')(__dirname);
+// }
+
 let mainWindow = null;
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 1200, height: 800, icon: __dirname + '/app/images/logo.icns' });
+  mainWindow.webContents.openDevTools();
   mainWindow.loadFile('app/index.html');
   mainWindow.on('closed', function () {
     mainWindow = null
   });
   // Create the Application's main menu
-  var template = [{
+  const template = [{
     label: "Application",
     submenu: [
       { label: "About Application", selector: "orderFrontStandardAboutPanel:" },

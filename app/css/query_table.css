@@ -1,0 +1,19 @@
+#queryTableID {
+
+}
+
+#queryTableID .column1 {
+  width: 30px;
+}
+
+#queryTableID .column2 {
+  width: 20px;
+}
+
+#queryTableID .column3 {
+  min-width: 120px;
+  width: 60px;
+}
+
+#queryTableID .column4 {
+}

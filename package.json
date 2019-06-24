@@ -16,7 +16,7 @@
     }
   },
   "scripts": {
-    "start": "electron .",
+    "start": "NODE_ENV=development && electron .",
     "dist": "electron-builder",
     "release": "build --mac --linux"
   },
@@ -34,8 +34,8 @@
     "electron-builder": "^20.36.2"
   },
   "dependencies": {
-    "electron-reload": "^1.4.0",
     "@rodrigogs/zongji": "rodrigogs/zongji",
+    "electron-reload": "^1.4.0",
     "list.js": "^1.5.0",
     "moment": "^2.22.2",
     "mousetrap": "^1.6.2"

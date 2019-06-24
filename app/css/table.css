@@ -99,26 +99,26 @@ tbody tr {
   padding: 10px 10px;
 }
 
-.column1 {
+#tableID .column1 {
   width: 130px;
   vertical-align: top;
   padding-top: 10px;
 }
 
-.column2 {
+#tableID .column2 {
   width: 40px;
   font-weight: bolder;
   vertical-align: top;
   padding-top: 10px;
 }
 
-.column3 {
+#tableID .column3 {
   vertical-align: top;
   padding-top: 10px;
   width: 100px;
 }
 
-.column4 {
+#tableID .column4 {
   vertical-align: top;
   padding-top: 10px;
   width: 60px;
@@ -126,14 +126,14 @@ tbody tr {
   overflow: scroll;
 }
 
-.column5 {
+#tableID .column5 {
   vertical-align: top;
   padding-top: 10px;
   width: 650px;
   text-align: left;
 }
 
-.column5 .detail {
+table .column5 .detail {
   display: none;
   /*width: 600px;*/
   overflow: scroll;
