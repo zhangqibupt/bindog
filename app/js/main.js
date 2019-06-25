@@ -155,7 +155,12 @@ function refreshSummary() {
 
 function showQueryLog() {
   const showQueryLog = $("#show_query_log").is(":checked");
-  showQueryLog ? $('#queryTableID').show() : $('#queryTableID').hide()
+  if (showQueryLog) {
+    $('#queryTableID').show()
+  } else {
+    $('#queryTableID').hide();
+    QUERY_TABLE.clear();
+  }
 }
 
 function showChangeHistory() {
