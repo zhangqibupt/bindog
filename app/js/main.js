@@ -79,9 +79,8 @@ function startListen() {
 
   ZONG_JI.start({
     startAtEnd: true,
-    includeEvents: ['tablemap', 'writerows', 'updaterows', 'deleterows', 'rotate'],
-    // excludeEvents: ['rotate'],
-    includeSchema: { 'mysql': true, 'fwmrm_oltp': true }
+    includeEvents: ['tablemap', 'writerows', 'updaterows', 'deleterows'],
+    excludeEvents: ['rotate']
   });
 
   CON = mysql.createConnection({

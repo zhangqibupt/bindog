@@ -2,7 +2,7 @@ let QUERY_TABLE = null;
 
 const CLEAR_DB_SQL = 'truncate mysql.slow_log';
 const SETUP_DB_SQL = "SET global log_output = 'table'; SET global slow_query_log = 1; SET global long_query_time = 0; SET global min_examined_row_limit = 0; SET global log_queries_not_using_indexes = 1;TRUNCATE mysql.slow_log";
-const FETCH_LOG_QUERY = "SELECT * FROM mysql.slow_log where db !='' and db !='mysql' and db NOT LIKE '%ApplicationName=DataGrip%'; TRUNCATE mysql.slow_log;";
+const FETCH_LOG_QUERY = "SELECT * FROM mysql.slow_log where db !='' and db !='mysql' and sql_text not in ('show databases%','show tables','Ping','Init DB'); TRUNCATE mysql.slow_log;";
 // const FETCH_LOG_QUERY = "SELECT * FROM mysql.slow_log where db !='' and db !='mysql';";
 
 (function ($) {

@@ -1,6 +1,6 @@
 {
   "name": "Bindog",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A MYSQL binlog watcher",
   "main": "main.js",
   "build": {
