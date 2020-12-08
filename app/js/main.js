@@ -9,8 +9,8 @@ const moment = require('moment');
 const Highlight = require('sql-highlight');
 const highlighter = new Highlight({ html: true });
 
-(function ($) {
-  "use strict";
+(function($) {
+  'use strict';
   /* List.js is required to make this table work. */
   const List = require('list.js');
 
@@ -21,7 +21,7 @@ const highlighter = new Highlight({ html: true });
 
   TABLE = new List('tableID', options);
 
-  $('#search-input').on('input', function () {
+  $('#search-input').on('input', function() {
     const searchString = $('#search-input input').val();
     // const searchType = $("label.btn.btn-secondary.active input").val();
     // TABLE.search(searchString, searchType && [searchType]);
@@ -29,32 +29,32 @@ const highlighter = new Highlight({ html: true });
     QUERY_TABLE.search(searchString);
   });
 
-  $("label.btn.btn-secondary").on('mouseup', function () {
+  $('label.btn.btn-secondary').on('mouseup', function() {
     const searchString = $('#search-input input').val();
     const searchType = $(this).find('input').val();
     TABLE.search(searchString, searchType && [searchType]);
   });
 
-  $(".table-list tbody.list").on('click', 'tr', function (e) {
-    $(e.target).closest("tr").find('div.detail').toggle();
+  $('.table-list tbody.list').on('click', 'tr', function(e) {
+    $(e.target).closest('tr').find('div.detail').toggle();
   });
 })(jQuery);
 
 function clickStart() {
   $('#start').prop('disabled', true);
   startListen();
-  setTimeout(function () {
+  setTimeout(function() {
     $('#start').prop('disabled', false);
-  }, 1000)
+  }, 1000);
 }
 
 function getDBInfo() {
   return {
-    host: $("#host").val() || '127.0.0.1',
-    port: $("#port").val() || 3306,
-    user: $("#username").val() || 'root',
-    password: $("#password").val()
-  }
+    host: $('#host').val() || '127.0.0.1',
+    port: $('#port').val() || 3306,
+    user: $('#username').val() || 'root',
+    password: $('#password').val()
+  };
 }
 
 function startListen() {
@@ -66,11 +66,11 @@ function startListen() {
   ZONG_JI = new ZongJi(getDBInfo());
   mysql.createConnection(getDBInfo());
 
-  ZONG_JI.on('binlog', function (evt) {
-    handleEvt(evt)
+  ZONG_JI.on('binlog', function(evt) {
+    handleEvt(evt);
   });
 
-  ZONG_JI.on('error', function (error) {
+  ZONG_JI.on('error', function(error) {
     if (error.code !== 'ETIMEDOUT') {
       alert(error);
       $('#lds-facebook').hide();
@@ -114,19 +114,26 @@ function handleEvt(evt) {
       refreshSummary();
       break;
   }
+  truncateTable(TABLE)
 }
 
 function handleDelete(evt) {
   const item = getDefaultItem(evt);
   item.operation_type = 'DELETE';
-  item.detail = evt.rows.map(row => createTable({ columns: COLUMNS, rows: Object.keys(row).map(key => [key, row[key]]) })).join('');
+  item.detail = evt.rows.map(row => createTable({
+    columns: COLUMNS,
+    rows: Object.keys(row).map(key => [key, row[key]])
+  })).join('');
   TABLE.add(item);
 }
 
 function handleInsert(evt) {
   const item = getDefaultItem(evt);
   item.operation_type = 'INSERT';
-  item.detail = evt.rows.map(row => createTable({ columns: COLUMNS, rows: Object.keys(row).map(key => [key, row[key]]) })).join('');
+  item.detail = evt.rows.map(row => createTable({
+    columns: COLUMNS,
+    rows: Object.keys(row).map(key => [key, row[key]])
+  })).join('');
   TABLE.add(item);
 }
 
@@ -141,32 +148,39 @@ function handleUpdate(evt) {
       const formattedValue = valueChanged ? `<p><span class="changed-value">${row.before[key]}</span>  =>  <span>${row.after[key]}</span></p>` : `<p class='unchanged-value'>${row.after[key]}</p>`;
       return [formattedKey, formattedValue];
     });
-    return createTable({ columns: COLUMNS, rows: tableRows })
+    return createTable({ columns: COLUMNS, rows: tableRows });
 
   }).join('');
   TABLE.add(item);
 }
 
 function refreshSummary() {
-  const showAll = $("#show_full_summary").is(":checked");
-  showAll ? $(".unchanged-value").parentsUntil('tbody').show() : $(".unchanged-value").parentsUntil('tbody').hide()
+  const showAll = $('#show_full_summary').is(':checked');
+  showAll ? $('.unchanged-value').parentsUntil('tbody').show() : $('.unchanged-value').parentsUntil('tbody').hide();
 }
 
 function showQueryLog() {
-  const showQueryLog = $("#show_query_log").is(":checked");
+  const showQueryLog = $('#show_query_log').is(':checked');
   if (showQueryLog) {
-    $('#queryTableID').show()
+    $('#queryTableID').show();
+    $('#queryTableTitle').show();
   } else {
     $('#queryTableID').hide();
+    $('#queryTableTitle').hide();
     QUERY_TABLE.clear();
   }
 }
 
 function showChangeHistory() {
-  const showQueryLog = $("#show_change_history").is(":checked");
-  showQueryLog ? $('#change_history_table').show() : $('#change_history_table').hide()
+  const showChangeHistory = $('#show_change_history').is(':checked');
+  if (showChangeHistory) {
+    $('#change_history_table').show();
+    $('#change_history_table_title').show();
+  } else {
+    $('#change_history_table').hide();
+    $('#change_history_table_title').hide();
+  }
 }
-
 
 function handleClear() {
   TABLE.clear();
@@ -174,7 +188,7 @@ function handleClear() {
 }
 
 function handleToggleAll() {
-  $('div.detail').is(':visible') ? $('div.detail').hide() : $('div.detail').show()
+  $('div.detail').is(':visible') ? $('div.detail').hide() : $('div.detail').show();
 }
 
 function getDefaultItem(evt) {
@@ -184,10 +198,9 @@ function getDefaultItem(evt) {
     timestamp: moment(evt.timestamp).format('YYYY-MM-DD HH:mm:ss'),
     db_name: tableInfo.parentSchema,
     table_name: tableInfo.tableName,
-    summary: `<p class="detail-summary">${evt.rows.length} Change(s)</p>`,
-  }
+    summary: `<p class="detail-summary">${evt.rows.length} Change(s)</p>`
+  };
 }
-
 
 function getCells(data, type) {
   return data.map(cell => `<${type}>${cell}</${type}>`).join('');
@@ -201,7 +214,7 @@ function createTable({ columns, rows }) {
   return `
     <table class='detail-table'>
       <thead>
-        <th class='column-key'>Key</th>
+        <th class='column-key'>Field</th>
         <th class='column-value'>Value</th>
       </thead>
       <tbody>${createBody(rows)}</tbody>
@@ -209,7 +222,18 @@ function createTable({ columns, rows }) {
   `;
 }
 
-
 function reportIssue() {
-  shell.openExternal('https://github.com/zhangqibupt/bindog/issues/new')
+  shell.openExternal('https://github.com/zhangqibupt/bindog/issues/new');
+}
+
+function truncateTable(table) {
+  if (table.size() > 400) {
+    for (var i = 0, il = 100; i < il; i++) {
+      table.templater.remove(table.items[i]);
+      table.items.splice(i, 1);
+      il--;
+      i--;
+    }
+    table.update();
+  }
 }

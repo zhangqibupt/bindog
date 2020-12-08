@@ -1,122 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Bindog</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-  </head>
-  <body>
-    <div class="limiter">
-      <div class="container-table100">
-        <div class="wrap-table100">
-          <div class="wrap-config-header">
-            <div class='config-area'>
-              <form class="form-inline">
-                <label class="sr-only" for="host">Host</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="host" placeholder="host" value='127.0.0.1'>
-                <label class="sr-only" for="port">Username</label>
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                  <div class="input-group-addon"> : </div>
-                  <input type="text" class="form-control" id="port" placeholder="port" value='3306'>
-                </div>
-                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="username" placeholder="username" value='root'>
-                <input type="password" class="form-control mb-2 mr-sm-2 mb-sm-0" id="password" placeholder="password">
-                <button type="button" id='start' class="btn btn-primary" onclick="clickStart()">Start Listen</button>
-                <div id='lds-facebook' class="lds-facebook">
-                  <div class="loader"></div>
-                </div>
-              </form>
+<head>
+  <title>Bindog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+  <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+  <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div class="limiter">
+  <div class="container-table100">
+    <div class="wrap-table100">
+      <div class="wrap-config-header">
+        <div class='config-area'>
+          <form class="form-inline">
+            <label class="sr-only" for="host">Host</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="host" placeholder="host" value='127.0.0.1'>
+            <label class="sr-only" for="port">Username</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+              <div class="input-group-addon"> :</div>
+              <input type="text" class="form-control" id="port" placeholder="port" value='3306'>
             </div>
-            <div class='logo-area'>
-
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="username" placeholder="username"
+                   value='root'>
+            <input type="password" class="form-control mb-2 mr-sm-2 mb-sm-0" id="password" placeholder="password">
+            <button type="button" id='start' class="btn btn-primary" onclick="clickStart()">Start Listen</button>
+            <div id='lds-facebook' class="lds-facebook">
+              <div class="loader"></div>
             </div>
-            <div>
-              <label class="btn  btn-danger hov-pointer" id="report_issue" onclick="reportIssue()">
-                Report Issue
-              </label>
-            </div>
-          </div>
-
-          <div class="table100" id="tableID">
-            <form class="form-inline search-form">
-              <div class='search-area'>
-                <div id='search-input'><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Search..."></div>
-              </div>
-              <button id='clear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
-              <button type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>
-              <!--<input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">-->
-              <!--<label class="form-check-label show_full_summary" for="show_full_summary">Show full summary</label>-->
-              <input type="checkbox" class="form-check-input show_full_summary" id="show_change_history" style='margin-left: 10px' onchange="showChangeHistory()" checked>
-              <label class="form-check-label show_full_summary" for="show_change_history">Change History</label>
-
-              <input type="checkbox" class="form-check-input show_full_summary" id="show_query_log" style='margin-left: 10px' onchange="showQueryLog()">
-              <label class="form-check-label show_full_summary" for="show_query_log">Query Log</label>
-              <!--<button id='toggle' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>-->
-            </form>
-            <table class="table-list" id='change_history_table'>
-              <thead>
-                <tr class="table100-head">
-                  <th class="column1">
-                    <button type="button" data-sort="timestamp">Timestamp</button>
-                  </th>
-                  <th class="column2">
-                    <button type="button" data-sort="operation_type">Type</button>
-                  </th>
-                  <th class="column3">
-                    <button type="button" data-sort="db_name">DB</i></button>
-                  </th>
-                  <th class="column4">
-                    <button type="button" data-sort="table_name">Table<i class="caret"></i></button>
-                  </th>
-                  <th class="column5">
-                    <button type="button" data-sort="summary">Summary<i class="caret"></i></button>
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="list">
-              </tbody>
-            </table>
-          </div>
-          <div class="table100" id="queryTableID" style=" display: none; padding-top: 20px;">
-            <table class="table-list" id='queryTable'>
-              <thead>
-                <tr class="table100-head">
-                  <th class="column1">
-                    <button type="button" data-sort="start_time">Timestamp</button>
-                  </th>
-                  <th class="column2">
-                    <button type="button" data-sort="query_time">Duration</button>
-                  </th>
-                  <th class="column3">
-                    <button type="button" data-sort="db">DB</button>
-                  </th>
-                  <th class="column4">
-                    <button type="button" data-sort="sql_text">SQL</button>
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="list">
-              </tbody>
-            </table>
-          </div>
+          </form>
+        </div>
+        <div class='logo-area'>
+        </div>
+        <div>
+          <label class="btn  btn-danger hov-pointer" id="report_issue" onclick="reportIssue()">
+            Report Issue
+          </label>
         </div>
       </div>
-    </div>
 
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <script src="vendor/bootstrap/js/popper.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="js/shortcut.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/query_log_table.js"></script>
-  </body>
+      <div class="table100" id="tableID">
+        <form class="form-inline search-form">
+          <div class='search-area'>
+            <div id='search-input'><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0"
+                                          placeholder="search by tablename or anything?"></div>
+          </div>
+          <button id='clear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
+          <button type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>
+          <!--<input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">-->
+          <!--<label class="form-check-label show_full_summary" for="show_full_summary">Show full summary</label>-->
+          <input type="checkbox" class="form-check-input show_full_summary" id="show_change_history"
+                 style='margin-left: 10px' onchange="showChangeHistory()" checked>
+          <label class="form-check-label show_full_summary" for="show_change_history">Change History</label>
+
+          <input type="checkbox" class="form-check-input show_full_summary" id="show_query_log"
+                 style='margin-left: 10px' onchange="showQueryLog()" checked>
+          <label class="form-check-label show_full_summary" for="show_query_log">General Log</label>
+          <!--<button id='toggle' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>-->
+        </form>
+        <div style="color: white" id="change_history_table_title">
+          <p style="padding-left: 5px; background-color: black">Change Histroy</p>
+        </div>
+        <table class="table-list" id='change_history_table'>
+          <thead>
+          <tr class="table100-head">
+            <th class="column1">
+              <button type="button" data-sort="timestamp">Timestamp</button>
+            </th>
+            <th class="column2">
+              <button type="button" data-sort="operation_type">Type</button>
+            </th>
+            <th class="column3">
+              <button type="button" data-sort="db_name">DB</i></button>
+            </th>
+            <th class="column4">
+              <button type="button" data-sort="table_name">Table<i class="caret"></i></button>
+            </th>
+            <th class="column5">
+              <button type="button" data-sort="summary">Summary<i class="caret"></i></button>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="list">
+          </tbody>
+        </table>
+      </div>
+      <div id="queryTableTitle" style="padding-top: 20px; color: white">
+        <p style="padding-left: 5px; background-color: black">General Log</p>
+      </div>
+      <div class="table100" id="queryTableID">
+        <table class="table-list" id='queryTable'>
+          <thead>
+          <tr class="table100-head">
+            <th class="column1">
+              <button type="button" data-sort="start_time">Timestamp</button>
+            </th>
+            <th class="column2">
+              <button type="button" data-sort="query_time">Duration</button>
+            </th>
+            <th class="column3">
+              <button type="button" data-sort="db">DB</button>
+            </th>
+            <th class="column4">
+              <button type="button" data-sort="sql_text">SQL</button>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="list">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/select2/select2.min.js"></script>
+<script src="js/shortcut.js"></script>
+<script src="js/main.js"></script>
+<script src="js/query_log_table.js"></script>
+</body>
 </html>
