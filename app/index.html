@@ -55,17 +55,14 @@
           <button type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>
           <!--<input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">-->
           <!--<label class="form-check-label show_full_summary" for="show_full_summary">Show full summary</label>-->
-          <input type="checkbox" class="form-check-input show_full_summary" id="show_change_history"
-                 style='margin-left: 10px' onchange="showChangeHistory()" checked>
-          <label class="form-check-label show_full_summary" for="show_change_history">Change History</label>
-
-          <input type="checkbox" class="form-check-input show_full_summary" id="show_query_log"
-                 style='margin-left: 10px' onchange="showQueryLog()" checked>
-          <label class="form-check-label show_full_summary" for="show_query_log">General Log</label>
           <!--<button id='toggle' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>-->
         </form>
+
         <div style="color: white" id="change_history_table_title">
-          <p style="padding-left: 5px; background-color: black">Change Histroy</p>
+          <input type="checkbox" class="form-check-input show_full_summary" id="show_change_history"
+                 style='margin-left: 4px' onchange="showChangeHistory()" checked>
+          <label class="form-check-label show_full_summary" for="show_change_history">Change History</label>
+          <!--          <p style="padding-left: 5px; background-color: black">Change Histroy</p>-->
         </div>
         <table class="table-list" id='change_history_table'>
           <thead>
@@ -91,8 +88,10 @@
           </tbody>
         </table>
       </div>
-      <div id="queryTableTitle" style="padding-top: 20px; color: white">
-        <p style="padding-left: 5px; background-color: black">General Log</p>
+      <div style="color: white; margin-top: 10px" id="change_history_table_title">
+        <input type="checkbox" class="form-check-input show_full_summary" id="show_query_log" style='margin-left: 4px'
+               onchange="showQueryLog()" checked>
+        <label class="form-check-label show_full_summary" for="show_query_log">General Log</label>
       </div>
       <div class="table100" id="queryTableID">
         <table class="table-list" id='queryTable'>

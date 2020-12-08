@@ -163,10 +163,8 @@ function showQueryLog() {
   const showQueryLog = $('#show_query_log').is(':checked');
   if (showQueryLog) {
     $('#queryTableID').show();
-    $('#queryTableTitle').show();
   } else {
     $('#queryTableID').hide();
-    $('#queryTableTitle').hide();
     QUERY_TABLE.clear();
   }
 }
@@ -175,10 +173,8 @@ function showChangeHistory() {
   const showChangeHistory = $('#show_change_history').is(':checked');
   if (showChangeHistory) {
     $('#change_history_table').show();
-    $('#change_history_table_title').show();
   } else {
     $('#change_history_table').hide();
-    $('#change_history_table_title').hide();
   }
 }
 
