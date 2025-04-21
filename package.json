@@ -18,7 +18,7 @@
     }
   },
   "scripts": {
-    "start": "NODE_ENV=development && electron .",
+    "start": "NODE_ENV=development electron .",
     "dist": "ELECTRON_MIRROR=\"https://npm.taobao.org/mirrors/electron/\"  electron-builder",
     "pack": "ELECTRON_MIRROR=\"https://npm.taobao.org/mirrors/electron/\"  electron-builder --dir",
     "release": "ELECTRON_MIRROR=\"https://npm.taobao.org/mirrors/electron/\"  build --mac --linux"
@@ -37,12 +37,13 @@
     "electron-builder": "^21.2.0"
   },
   "dependencies": {
-    "@rodrigogs/zongji": "rodrigogs/zongji",
+    "@vlasky/zongji": "vlasky/zongji",
     "electron-reload": "^1.4.0",
     "fsevents": "^2.2.1",
     "list.js": "^1.5.0",
     "moment": "^2.22.2",
     "mousetrap": "^1.6.2",
+    "mysql": "^2.18.1",
     "sql-highlight": "^2.1.2"
   }
 }
