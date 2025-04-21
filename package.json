@@ -15,13 +15,37 @@
       "target": [
         "pkg"
       ]
+    },
+    "win": {
+      "icon": "app/images/logo.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "publish": [
+        "github"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Bindog"
     }
   },
   "scripts": {
     "start": "NODE_ENV=development electron .",
-    "dist": "ELECTRON_MIRROR=\"https://npm.taobao.org/mirrors/electron/\"  electron-builder",
-    "pack": "ELECTRON_MIRROR=\"https://npm.taobao.org/mirrors/electron/\"  electron-builder --dir",
-    "release": "ELECTRON_MIRROR=\"https://npm.taobao.org/mirrors/electron/\"  build --mac --linux"
+    "dist": "ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder",
+    "dist:win": "ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder --win",
+    "dist:mac": "ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder --mac",
+    "pack": "ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder --dir",
+    "release": "ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder -ml --publish never",
+    "release:win": "ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-builder -w"
   },
   "repository": "https://github.com/zhangqibupt/bindog",
   "keywords": [
@@ -33,7 +57,7 @@
   "author": "GitHub",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^3.0.4",
+    "electron": "^11.2.1",
     "electron-builder": "^21.2.0"
   },
   "dependencies": {
