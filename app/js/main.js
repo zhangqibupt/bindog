@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 let CON = null;
-const ZongJi = require('@rodrigogs/zongji');
+const ZongJi = require('@vlasky/zongji');
 const { shell } = require('electron');
 const COLUMNS = ['Column Name', 'Value'];
 let TABLE = null;
