@@ -4,8 +4,9 @@
 
 Bindog helps developers **see database changes as they happen**, making it easy to **catch unintended modifications** during code refactoring or rewriting.
 
-[Watch Live Demo](https://youtu.be/D9C-eu26A9w)
+![screenshot](./asset/demo.jpg)
 
+[Watch Live Demo](https://youtu.be/D9C-eu26A9w)
 
 -----
 
