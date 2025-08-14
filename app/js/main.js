@@ -40,6 +40,12 @@ const highlighter = new Highlight({ html: true });
   });
 })(jQuery);
 
+$('#password').on('keydown', function(event) {
+  if (event.key === 'Enter') {
+    clickStart()
+  }
+});
+
 function clickStart() {
   $('#start').prop('disabled', true);
   startListen();
@@ -115,6 +121,8 @@ function handleEvt(evt) {
       break;
   }
   truncateTable(TABLE)
+  const searchString = $('#search-input input').val();
+  TABLE.search(searchString);
 }
 
 function handleDelete(evt) {

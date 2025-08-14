@@ -47,6 +47,8 @@ function fetchLogs() {
         })));
 
         truncateTable(QUERY_TABLE)
+        const searchString = $('#search-input input').val();
+        QUERY_TABLE.search(searchString);
       }
     });
   }

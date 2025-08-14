@@ -29,7 +29,7 @@
             </div>
             <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="username" placeholder="username"
                    value='root'>
-            <input type="password" class="form-control mb-2 mr-sm-2 mb-sm-0" id="password" placeholder="password">
+            <input type="password" class="form-control mb-2 mr-sm-2 mb-sm-0" id="password" placeholder="password" autofocus>
             <button type="button" id='start' class="btn btn-primary" onclick="clickStart()">Start Listen</button>
             <div id='lds-facebook' class="lds-facebook">
               <div class="loader"></div>
@@ -53,15 +53,17 @@
           </div>
           <button id='clear' type="button" class="btn btn-primary" onclick="handleClear()">Clear</button>
           <button type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>
-          <!--<input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">-->
-          <!--<label class="form-check-label show_full_summary" for="show_full_summary">Show full summary</label>-->
-          <!--<button id='toggle' type="button" class="btn btn-primary" onclick="handleToggleAll()">Toggle All</button>-->
+          <input type="checkbox" class="form-check-input show_full_summary" id="show_full_summary" onchange="refreshSummary()">
+          <label class="form-check-label show_full_summary" for="show_full_summary">Show Unchanged Fields</label>
         </form>
 
         <div style="color: white" id="change_history_table_title">
           <input type="checkbox" class="form-check-input show_full_summary" id="show_change_history"
                  style='margin-left: 4px' onchange="showChangeHistory()" checked>
-          <label class="form-check-label show_full_summary" for="show_change_history">Change History</label>
+                 <p>
+                   <label class="form-check-label show_full_summary" for="show_change_history">Change History</label>
+                   <span style="font-size: 12px; color: #ddd4d4;">(Show all the changed data in DB)</p>
+                 </p>
           <!--          <p style="padding-left: 5px; background-color: black">Change Histroy</p>-->
         </div>
         <table class="table-list" id='change_history_table'>
@@ -91,7 +93,10 @@
       <div style="color: white; margin-top: 10px" id="change_history_table_title">
         <input type="checkbox" class="form-check-input show_full_summary" id="show_query_log" style='margin-left: 4px'
                onchange="showQueryLog()" checked>
-        <label class="form-check-label show_full_summary" for="show_query_log">General Log</label>
+               <p>
+                 <label class="form-check-label show_full_summary" for="show_query_log">General Log</label>
+                 <span style="font-size: 12px; color: #ddd4d4;">(Show all the queries the MYSQL received, including the read queries)</p>
+               </p>
       </div>
       <div class="table100" id="queryTableID">
         <table class="table-list" id='queryTable'>
@@ -126,5 +131,6 @@
 <script src="js/shortcut.js"></script>
 <script src="js/main.js"></script>
 <script src="js/query_log_table.js"></script>
+
 </body>
 </html>
