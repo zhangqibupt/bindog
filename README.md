@@ -1,24 +1,62 @@
-# bindog
-A MySQL binlog/query log listener running on Electron
+# Bindog
 
-[DEMO](https://youtu.be/D9C-eu26A9w)
+**Real-time MySQL binlog monitoring, powered by Electron**
 
-## To Use
-Download from https://github.com/zhangqibupt/bindog/releases
+Bindog helps developers **see database changes as they happen**, making it easy to **catch unintended modifications** during code refactoring or rewriting.
 
-## NOTE
-This is based on [Zongji](https://github.com/nevill/zongji), if you cannot see binlog output or encounter `Error: ER_NO_BINARY_LOGGING: You are not using binary logging`, please make sure
-* Enable MySQL binlog in `my.cnf`, restart MySQL server.
-  ```
-  [mysqld]
-  server-id        = 1
-  binlog_format    = row
-  # Directory must exist. This path works for Linux.
-  log_bin          = /var/log/mysql/mysql-bin.log
-  ```
+[Watch Live Demo](https://youtu.be/D9C-eu26A9w)
 
-  For docker image, it may be located in
-  - /etc/mysql/my.cnf
-  - /etc/my.cnf
 
-Note that, if you specify mysql options `binlog-ignore-db` or `binlog-ignore-db`, some tables would be ingored and won't trigger binlog events accordingly.
+-----
+
+## Key Features
+
+  - **Real-time Monitoring** – Track MySQL binlog events live.
+  - **Visual Interface** – Electron-based GUI for instant insights.
+  - **Smart Search** – Filter events by database, table, or keyword.
+  - **Error Detection** – Quickly spot unexpected database changes during development.
+
+-----
+
+## Requirements
+
+  - MySQL with **binary logging enabled** (`binlog_format = row`)
+  - Node.js ≥ 12
+  - Electron ≥ 21
+
+-----
+
+## Quick Start
+
+```bash
+git clone https://github.com/zhangqibupt/bindog.git
+cd bindog
+yarn install
+yarn start
+```
+
+Or download the latest release.
+
+### MySQL Setup
+
+Enable binlog in my.cnf:
+
+```ini
+[mysqld]
+server-id = 1
+binlog_format = row
+log_bin = /var/log/mysql/mysql-bin.log
+```
+
+⚠️ Tables ignored by binlog-ignore-db won’t trigger events.
+
+## Why Bindog?
+
+  - Validate code changes against database impact instantly.
+  - Speed up debugging by highlighting unexpected modifications.
+  - Interactive GUI makes binlog exploration intuitive.
+
+## Limitations
+
+  - MySQL only.
+  - Requires Node.js ≥ 12, Electron ≥ 21.
