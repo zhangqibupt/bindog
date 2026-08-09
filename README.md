@@ -1,3 +1,5 @@
+
+
 # Bindog
 
 **Real-time MySQL binlog monitoring, powered by Electron**
@@ -23,7 +25,7 @@ Bindog helps developers **see database changes as they happen**, making it easy 
 
   - MySQL with **binary logging enabled** (`binlog_format = row`)
   - Node.js ≥ 12
-  - Electron ≥ 21
+  - Electron ≥ 11
 
 -----
 
@@ -60,4 +62,4 @@ log_bin = /var/log/mysql/mysql-bin.log
 ## Limitations
 
   - MySQL only.
-  - Requires Node.js ≥ 12, Electron ≥ 21.
+  - Requires Node.js ≥ 12, Electron ≥ 11.
